@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.min.css">
+
+    <style>
+        body {
+            padding: 2em 0 0;
+        }
+
+        .color-blue {
+            background: blue;
+            color: white;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .completed {
+            color: #999;
+            text-decoration: line-through;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="app" class="container">
+
+        <coupon @applied="onCouponApplied"></coupon>
+
+        <h1 v-show="couponApplied">You used a coupon!</h1>
+
+    </div>
+    
+    <script src="https://unpkg.com/vue"></script>
+    <script src="episodes/13.js"></script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
+
+</head>
+<body>
+
+    <div id="root" class="container">
+        <input type="text" v-model="newItem" v-on:keyup="addItem">
+
+        <button @click="addItem" :title="title">Add item</button>
+
+
+        <ul>
+            <li v-for="item in items">{{item}}</li>
+        </ul>
+
+
+        <button :class="{ 'is-loading' : isLoading }" :disabled="isDisabled">yesss</button>
+
+
+        <h1>{{reversedMessage}}</h1>
+
+        <h2>All Tasks</h2>
+        <ul>
+            <li v-for="task in tasks"
+                @click="task.completed = !task.completed"
+            >
+                <input type="checkbox"
+                       :checked="task.completed"
+                >
+                {{task.description}}
+            </li>
+        </ul>
+
+        <h2>Completed Tasks</h2>
+        <ul>
+            <li v-for="task in completedTasks">{{task.description}}</li>
+        </ul>
+
+        <h2>Incomplete Tasks</h2>
+        <ul>
+            <li v-for="task in incompleteTasks">{{task.description}}</li>
+        </ul>
+
+
+        <task>task 1</task>
+        <task>task 2</task>
+        <task>task 3</task>
+        <task>task 4</task>
+        <task>task 5</task>
+        <task>task 6</task>
+
+        <task-list>
+        </task-list>
+
+
+        <message title="hiii" body="eee"></message>
+
+        <message title="nooo" body="yesss"></message>
+
+        <modal content="fooooo"
+               title="titleee"
+               v-show="showModal"
+               @close="showModal = false"
+        ></modal>
+
+
+        <button class="button is-primary" @click="showModal = true">show modal</button>
+
+
+        <tabs>
+            <tab name="First tab" selected="true">
+                <h1>I'm the first one</h1>
+            </tab>
+            <tab name="Second tab">
+                <h1>I'm the second one</h1>
+            </tab>
+            <tab name="Third tab">
+                <h1>I'm the third one</h1>
+            </tab>
+        </tabs>
+
+    </div>
+    
+    <script src="https://unpkg.com/vue@2.5.13/dist/vue.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        let data = {
+
+            isDisabled: false,
+
+            isLoading: false,
+
+            items : [
+                'item 1',
+                'item 2',
+                'item 3',
+                'item 4',
+                'item 5'
+            ],
+
+            message: 'hiii dude',
+
+            newItem: 'someone',
+
+            showModal: false,
+
+            tasks: [],
+
+            title: 'Dynamic title'
+        };
+
+        var app = new Vue({
+
+            el: '#root',
+
+            data,
+
+            computed: {
+
+                completedTasks() {
+                    return this.tasks.filter(task => task.completed)
+                },
+
+                incompleteTasks() {
+                    return this.tasks.filter(task => ! task.completed)
+                },
+
+                reversedMessage() {
+                    return this.message
+                               .split(' ')
+                               .reverse()
+                               .join(' ')
+                }
+            },
+
+            methods: {
+                addItem() {
+                    this.items.push(this.newItem);
+
+                    this.newItem = '';
+                }
+            },
+
+            mounted() {
+                
+            }
+
+
+        })
+
+
+    </script>
+</body>
+</html>

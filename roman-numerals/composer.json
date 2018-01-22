@@ -1,0 +1,17 @@
+{
+    "name": "alexandros/roman-numerals",
+    "authors": [
+        {
+            "name": "aletzo",
+            "email": "alexandros.tzotzolas@launchmetrics.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpspec/phpspec": "^4.0"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "autoload": {"psr-0": {"": "src"}}
+}
